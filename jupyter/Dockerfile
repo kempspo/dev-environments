@@ -1,4 +1,4 @@
-FROM jupyter/all-spark-notebook:1386e2046833
+FROM jupyter/all-spark-notebook:bfb2be718a58
 LABEL maintainer="Kemp Po kempspo@gmail.com"
 
 # Switch to root and install dependencies
@@ -14,6 +14,8 @@ RUN apt-get update && apt-get -y install \
 	zsh \
 	gnupg \
 	apt-transport-https
+
+RUN pip install notebook
 
 # Install Docker (to be able to communicate with Docker host)
 RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - && \
