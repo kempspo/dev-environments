@@ -15,8 +15,6 @@ RUN apt-get update && apt-get -y install \
 	gnupg \
 	apt-transport-https
 
-RUN pip install notebook
-
 # Install Docker (to be able to communicate with Docker host)
 RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - && \
     apt-key fingerprint 0EBFCD88 && \
