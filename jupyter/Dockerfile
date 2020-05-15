@@ -103,8 +103,6 @@ USER $NB_UID
 COPY start_notebook.sh /usr/local/bin/start-notebook.d/start_notebook.sh
 COPY before_notebook.sh /usr/local/bin/before-notebook.d/before_notebook.sh
 
-EXPOSE 8888
-
 CMD [ \
     "/usr/local/bin/start.sh", \
     "jupyter", "lab", \
