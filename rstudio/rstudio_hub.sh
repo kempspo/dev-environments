@@ -1,8 +1,7 @@
 #! /bin/bash
 
 # Turn JUPYTERHUB_USER into USER variable
-export USER1=$(echo ${JUPYTERHUB_USER//\./-2e})
-export USER=$(echo ${USER1//@/-40})
+export USER=$(echo ${NB_USER})
 
 # Add nginx config and start nginx
 echo "
