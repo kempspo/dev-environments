@@ -1,4 +1,4 @@
-VERSION = v1.0.0
+VERSION = v1.0.1
 REPO    = kemppo/apps:jupyter
 
 docker-build:
