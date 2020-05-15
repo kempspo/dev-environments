@@ -1,5 +1,5 @@
 # RStudio Server Docker Image
-FROM rocker/geospatial:3.6.1
+FROM rocker/geospatial:3.6.3
 LABEL maintainer="Kemp Po kempspo@gmail.com"
 
 # Linux Dependencies
@@ -55,3 +55,6 @@ RUN apt-get update && apt-get install gdebi-core
 
 # Rprofile.site
 COPY Rprofile.site /usr/local/lib/R/etc/Rprofile.site
+
+COPY rstudio_hub.sh /cmd/rstudio_hub.sh
+CMD ["/cmd/rstudio_hub.sh"]
