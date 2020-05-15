@@ -5,7 +5,7 @@ USER root
 
 # Linux Dependencies
 RUN apt-get update && apt-get -y install \
-  gnugpg \
+  gnupg \
   gdebi-core \
   apt-utils \
   curl \
