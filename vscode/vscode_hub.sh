@@ -40,3 +40,4 @@ sudo runuser -l  coder -c "\
     /usr/local/bin/code-server \
     --auth none --disable-telemetry \
     "
+echo "GOT HERE"
