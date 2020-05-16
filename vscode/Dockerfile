@@ -3,9 +3,7 @@ LABEL maintainer="Kemp Po kempspo@gmail.com"
 USER root
 
 # Linux Dependencies
-RUN apt-get clean
-
-RUN apt-get update && apt-get -y install \
+RUN apt update && apt -y install \
   gdebi-core \
   apt-utils \
   curl \
@@ -15,18 +13,19 @@ RUN apt-get update && apt-get -y install \
   nginx \
   gnupg2 \
   apt-transport-https \
-  lsb-release
+  lsb-release \
+  ca-certificates
 
 # Install Docker & ZSH
 USER root
 # RUN sudo apt-get update && sudo apt-get install -y  software-properties-common
-RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - && \
-    apt-key fingerprint 0EBFCD88 && \
+RUN curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add - && \
+    # apt-key fingerprint 0EBFCD88 && \
     add-apt-repository \
     "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
     $(lsb_release -cs) \
     stable" && \
-    apt-get update && apt-get install -y docker-ce docker-ce-cli containerd.io
+    apt update && apt-cache policy docker-ce \ apt install -y docker-ce docker-ce-cli containerd.io
 
 # Install kubectl
 RUN curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - && \
