@@ -39,7 +39,7 @@ RUN curl -sSL https://s3.amazonaws.com/downloads.cloud66.com/cx_installation/cx_
 EXPOSE 8888
 
 # Switch back to coder user
-USER coder
+#USER coder
 
 # New Entrypoint
 COPY vscode_hub.sh /cmd/vscode_hub.sh
