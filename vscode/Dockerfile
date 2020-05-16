@@ -1,4 +1,4 @@
-FROM codercom/code-server:3.2.0
+FROM codercom/code-server:3.0.2
 LABEL maintainer="Kemp Po kempspo@gmail.com"
 
 USER root
@@ -18,13 +18,13 @@ RUN apt-get update && apt-get -y install \
 # Install Docker & ZSH
 USER root
 RUN sudo apt-get update && sudo apt-get install -y lsb-release software-properties-common
-RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - && \
-    apt-key fingerprint 0EBFCD88 && \
-    add-apt-repository \
-    "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-    $(lsb_release -cs) \
-    stable" && \
-    apt-get update && apt-get install -y docker-ce docker-ce-cli containerd.io
+RUN curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add - && \
+	apt-key fingerprint 0EBFCD88 && \
+	add-apt-repository \
+	"deb [arch=amd64] https://download.docker.com/linux/debian \
+	$(lsb_release -cs) \
+	stable" && \
+	apt-get update && apt-get install -y docker-ce docker-ce-cli containerd.io
 
 # Install kubectl
 RUN apt-get update && apt-get install -y apt-transport-https && \
