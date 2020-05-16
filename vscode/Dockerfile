@@ -11,7 +11,8 @@ RUN apt-get update && apt-get -y install \
   software-properties-common \
   zsh \
   nginx \
-  gnupg
+  gnupg2 \
+  apt-transport-https
 
 # Install Docker & ZSH
 USER root
