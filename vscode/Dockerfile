@@ -3,6 +3,8 @@ LABEL maintainer="Kemp Po kempspo@gmail.com"
 USER root
 
 # Linux Dependencies
+RUN apt-get clean
+
 RUN apt-get update && apt-get -y install \
   gdebi-core \
   apt-utils \
@@ -12,11 +14,12 @@ RUN apt-get update && apt-get -y install \
   zsh \
   nginx \
   gnupg2 \
-  apt-transport-https
+  apt-transport-https \
+  lsb-release
 
 # Install Docker & ZSH
 USER root
-RUN sudo apt-get update && sudo apt-get install -y lsb-release software-properties-common
+# RUN sudo apt-get update && sudo apt-get install -y  software-properties-common
 RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - && \
     apt-key fingerprint 0EBFCD88 && \
     add-apt-repository \
@@ -26,8 +29,7 @@ RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
     apt-get update && apt-get install -y docker-ce docker-ce-cli containerd.io
 
 # Install kubectl
-RUN apt-get update && apt-get install -y apt-transport-https && \
-  curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - && \
+RUN curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - && \
   echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | tee -a /etc/apt/sources.list.d/kubernetes.list && \
   apt-get update && apt-get install -y kubectl
 
