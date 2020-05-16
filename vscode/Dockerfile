@@ -10,7 +10,8 @@ RUN apt-get update && apt-get -y install \
   nano \
   software-properties-common \
   zsh \
-  nginx
+  nginx \
+  gnupg
 
 # Install Docker & ZSH
 USER root
