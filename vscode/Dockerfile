@@ -15,7 +15,7 @@ RUN apt-get update && apt-get -y install \
   nginx \
   gnupg2 \
   apt-transport-https \
-  lsb-release
+  # lsb-release
 
 # Install Docker & ZSH
 USER root
