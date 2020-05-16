@@ -3,7 +3,6 @@
 # Turn JUPYTERHUB_USER into USER variable
 export USER=$(echo ${NB_USER})
 
-
 # Add nginx config and start nginx
 sudo rm -f /etc/nginx/sites-enabled/default
 echo "
