@@ -27,9 +27,6 @@ server {
 " > /etc/nginx/sites-enabled/default
 service nginx start
 
-# Start cron
-cron start
-
 # Allow non root user to use docker
 usermod -aG docker $USER
 
