@@ -1,4 +1,4 @@
-FROM codercom/code-server:2.1662-vsc1.39.2
+FROM codercom/code-server:2.1665-vsc1.39.2
 LABEL maintainer="Kemp Po kempspo@gmail.com"
 USER root
 
