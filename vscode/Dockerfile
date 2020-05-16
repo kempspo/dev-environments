@@ -39,9 +39,11 @@ RUN curl -sSL https://s3.amazonaws.com/downloads.cloud66.com/cx_installation/cx_
 EXPOSE 8888
 
 # Switch back to coder user
-#USER coder
+USER coder
 
 # New Entrypoint
 COPY vscode_hub.sh /cmd/vscode_hub.sh
+
+RUN chmod 777 +rx /cmd/vscode_hub.sh
 ENTRYPOINT ["/cmd/vscode_hub.sh"]
 # ENTRYPOINT ["dumb-init", "code-server", "--host", "0.0.0.0", "--auth", "none", "--disable-telemetry"]
