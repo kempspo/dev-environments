@@ -30,14 +30,21 @@ sudo service nginx start
 
 # Allow non root user to use docker
 sudo usermod -aG docker coder
+# sudo mkdir -p /home/$USER
+# sudo chown -R 1000:1000 /home/$USER
+
+# # Run VS Code Server
+# sudo runuser -l  coder -c "\
+#     HOME=/home/$USER \
+#     /usr/bin/dumb-init \
+#     /usr/local/bin/code-server \
+#     --auth none --disable-telemetry \
+#     "
+
+echo "$USER ALL=(ALL) NOPASSWD:ALL" | sudo tee -a /etc/sudoers
+sudo usermod -l $USER coder
 sudo mkdir -p /home/$USER
 sudo chown -R 1000:1000 /home/$USER
 
 # Run VS Code Server
-sudo runuser -l  coder -c "\
-    HOME=/home/$USER \
-    /usr/bin/dumb-init \
-    /usr/local/bin/code-server \
-    --auth none --disable-telemetry \
-    "
-echo "GOT HERE"
+HOME=/home/$USER dumb-init code-server --auth none --disable-telemetry

@@ -28,9 +28,9 @@ RUN curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -
     apt-get update && apt-cache policy docker-ce && apt-get install -y docker-ce docker-ce-cli containerd.io
 
 # Install kubectl
-RUN curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - && \
-  echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | tee -a /etc/apt/sources.list.d/kubernetes.list && \
-  apt-get update && apt-get install -y kubectl
+# RUN curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - && \
+#   echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | tee -a /etc/apt/sources.list.d/kubernetes.list && \
+#   apt-get update && apt-get install -y kubectl
 
 # Install Cloud66 Toolbelt
 RUN curl -sSL https://s3.amazonaws.com/downloads.cloud66.com/cx_installation/cx_install.sh | bash
