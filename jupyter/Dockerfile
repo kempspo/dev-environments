@@ -6,7 +6,8 @@ USER root
 # Linux
 RUN apt-get update && \
   apt-get install -y cron gnupg && \
-  apt-get install -y --fix-missing openssh-server
+  apt-get install -y --fix-missing openssh-server \
+  apt-get install -y nginx
 
 # Install Cloud66 Toolbelt
 RUN curl -sSL https://s3.amazonaws.com/downloads.cloud66.com/cx_installation/cx_install.sh | bash
