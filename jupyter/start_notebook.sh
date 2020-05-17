@@ -17,7 +17,7 @@ upstream notebook {
     server localhost:8888;
 }
 server {
-    location (user/[^/]*)/api/kernels/ {
+    location ~ (user/[^/]*)/api/kernels/ {
         proxy_pass            https://notebook;
         proxy_set_header      Host $host;
         # websocket support
