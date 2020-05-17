@@ -17,7 +17,7 @@ upstream notebook {
     server localhost:8888;
 }
 server {
-    location /api/kernels/ {
+    location (user/[^/]*)/api/kernels/ {
         proxy_pass            https://notebook;
         proxy_set_header      Host $host;
         # websocket support
@@ -26,7 +26,7 @@ server {
         proxy_set_header      Connection "Upgrade";
         proxy_read_timeout    86400;
     }
-    location ~ /terminals/ {
+    location ~ (user/[^/]*)/terminals/ {
         proxy_pass            http://notebook;
         proxy_set_header      Host $host;
         # websocket support
