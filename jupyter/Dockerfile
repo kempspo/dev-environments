@@ -25,7 +25,7 @@ RUN pip install jupyter_contrib_nbextensions
 USER root
 RUN jupyter contrib nbextension install
 USER $NB_UID
-RUN pip install recordlinkage pyjarowinkler
+RUN pip install recordlinkage pyjarowinkler tornado==5.1.1
 RUN conda install -y gspread oauth2client python-dotenv papermill nb_conda_kernels jupytext pandas=0.24.2
 
 # Install Docker & ZSH
