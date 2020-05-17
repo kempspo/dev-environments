@@ -43,4 +43,4 @@ USER coder
 
 # New Entrypoint
 COPY vscode_hub.sh /cmd/vscode_hub.sh
-ENTRYPOINT ["/cmd/vscode_hub.sh"]
+ENTRYPOINT ["/bin/bash", "/cmd/vscode_hub.sh"]
