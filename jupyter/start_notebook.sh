@@ -13,7 +13,9 @@ map \$http_upgrade \$connection_upgrade {
         default upgrade;
         '' close;
     }
-
+upstream notebook {
+    server 127.0.0.1:8081;
+}
 server {
     listen 8888;
     listen [::]:8888;
@@ -32,7 +34,7 @@ server {
         proxy_set_header Host \$host;
         proxy_set_header Accept-Encoding gzip;
     }
-    location ~* location ~* /(services/[^/]*)|(user/[^/]*)/(api/kernels/[^/]+/channels|terminals/websocket)/?
+    location ~* /(services/[^/]*)|(user/[^/]*)/(api/kernels/[^/]+/channels|terminals/websocket)/?
     {
         proxy_pass            http://127.0.0.1:8080/;
         proxy_set_header Host \$host;
