@@ -14,7 +14,7 @@ map \$http_upgrade \$connection_upgrade {
         '' close;
     }
 upstream notebook {
-    server localhost:8888;
+    server http://127.0.0.1:8888;
 }
 server {
     location ~* (/user/[^/]*)/api/kernels/ {
