@@ -18,8 +18,8 @@ upstream notebook {
 }
 server {
     location ~* (/user/[^/]*)/api/kernels/ {
-        proxy_pass            https://notebook;
-        proxy_set_header      Host $host;
+        proxy_pass            https://jupyter;
+        proxy_set_header      Host $http_host;
         # websocket support
         proxy_http_version    1.1;
         proxy_set_header      Upgrade "websocket";
@@ -27,8 +27,8 @@ server {
         proxy_read_timeout    86400;
     }
     location ~* (/user/[^/]*)/terminals/ {
-        proxy_pass            http://notebook;
-        proxy_set_header      Host $host;
+        proxy_pass            http://jupyter;
+        proxy_set_header      Host $http_host;
         # websocket support
         proxy_http_version    1.1;
         proxy_set_header      Upgrade "websocket";
