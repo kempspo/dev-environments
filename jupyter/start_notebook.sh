@@ -13,12 +13,14 @@ map \$http_upgrade \$connection_upgrade {
         default upgrade;
         '' close;
     }
-upstream notebook {
-    server http://127.0.0.1:8888;
-}
+
 server {
     listen 8888;
     listen [::]:8888;
+
+    access_log /var/log/nginx/access.log;
+    error_log /var/log/nginx/error.log;
+
     rewrite ^${JUPYTERHUB_SERVICE_PREFIX:0:(-1)}$ $HUB_HOST$JUPYTERHUB_SERVICE_PREFIX permanent;
     location $JUPYTERHUB_SERVICE_PREFIX {
         proxy_pass http://127.0.0.1:8080/;
@@ -30,7 +32,8 @@ server {
         proxy_set_header Host \$host;
         proxy_set_header Accept-Encoding gzip;
     }
-    location ~* (/user/[^/]*)/api/kernels/ {
+    location ~* location ~* /(services/[^/]*)|(user/[^/]*)/(api/kernels/[^/]+/channels|terminals/websocket)/?
+    {
         proxy_pass            http://127.0.0.1:8080/;
         proxy_set_header Host \$host;
         # websocket support
@@ -39,15 +42,6 @@ server {
         proxy_set_header Connection \$connection_upgrade;
         proxy_read_timeout    86400;
     }
-    location ~* (/user/[^/]*)/terminals/ {
-        proxy_pass            http://127.0.0.1:8080/;
-        proxy_set_header Host \$host;
-        # websocket support
-        proxy_http_version    1.1;
-        proxy_set_header Upgrade \$http_upgrade;
-        proxy_set_header Connection \$connection_upgrade;
-        proxy_read_timeout    86400;
-    }    
 }
 " | sudo tee /etc/nginx/sites-enabled/default
 sudo service nginx start
