@@ -1,4 +1,4 @@
-FROM jupyter/datascience-notebook:4cdbc9cdb7d1
+FROM jupyter/datascience-notebook:7a0c7325e470
 
 # Switch to root and install system dependencies
 USER root
