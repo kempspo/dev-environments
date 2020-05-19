@@ -38,5 +38,6 @@ sudo runuser -l  coder -c "\
     HOME=/home/$USER \
     /usr/bin/dumb-init \
     code-server \
+    --ip='0.0.0.0' \
     --auth none --disable-telemetry \
     "
