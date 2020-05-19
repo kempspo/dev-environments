@@ -14,7 +14,7 @@ map \$http_upgrade \$connection_upgrade {
         '' close;
     }
 upstream notebook {
-    server 127.0.0.1:8081;
+    server 127.0.0.1:8888;
 }
 server {
     listen 8888;
@@ -36,7 +36,7 @@ server {
     }
     location ~* /(services/[^/]*)|(user/[^/]*)/(api/kernels/[^/]+/channels|terminals/websocket)/?
     {
-        proxy_pass            http://127.0.0.1:8080/;
+        proxy_pass           http://notebook;
         proxy_set_header Host \$host;
         # websocket support
         proxy_http_version    1.1;
