@@ -1,7 +1,7 @@
 #! /bin/bash
 
 # Turn JUPYTERHUB_USER into USER variable
-export USER=$(echo ${NB_USER})
+# export USER=$(echo ${NB_USER})
 
 # Add nginx config and start nginx
 sudo rm -f /etc/nginx/sites-enabled/default
@@ -27,13 +27,12 @@ server {
 sudo service nginx start
 
 # Allow non root user to use docker
-sudo usermod -aG docker coder
-sudo mkdir -p /home/$USER
-sudo chown -R 1000:1000 /home/$USER
+# sudo usermod -aG docker coder
+# sudo mkdir -p /home/$USER
+# sudo chown -R 1000:1000 /home/$USER
 
 # # Run VS Code Server
 sudo runuser -l  coder -c "\
-    HOME=/home/$USER \
     dumb-init \
     code-server \
     --host 0.0.0.0 \ 
