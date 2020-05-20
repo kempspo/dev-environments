@@ -36,11 +36,12 @@ RUN curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -
 RUN curl -sSL https://s3.amazonaws.com/downloads.cloud66.com/cx_installation/cx_install.sh | bash
 
 # Expose JupyterHub Port
-EXPOSE 8888
+# EXPOSE 8888
 
 # Switch back to coder user
 USER coder
 
-# New Entrypoint
-COPY vscode_hub.sh /cmd/vscode_hub.sh
-ENTRYPOINT ["/cmd/vscode_hub.sh"]
+# # New Entrypoint
+# COPY vscode_hub.sh /cmd/vscode_hub.sh
+# ENTRYPOINT ["/cmd/vscode_hub.sh"]
+ENTRYPOINT ["dumb-init", "code-server", "--host", "0.0.0.0", "--auth", "none", "--disable-telemetry"]
