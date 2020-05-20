@@ -11,8 +11,8 @@ map \$http_upgrade \$connection_upgrade {
         '' close;
     }
 server {
-        listen 4180;
-        listen [::]:4180;
+        listen 8888;
+        listen [::]:8888;
         location / {
              proxy_pass http://127.0.0.1:8080/;
              proxy_http_version 1.1;
