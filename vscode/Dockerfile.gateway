@@ -1,6 +1,6 @@
 # VS Code Gateway
 FROM quay.io/pusher/oauth2_proxy:v3.2.0
-MAINTAINER Kemp Po <kempspo@gmail.com>
+LABEL maintainer="Kemp Po kempspo@gmail.com"
 
 # Copy Authenticated Email List
 USER root

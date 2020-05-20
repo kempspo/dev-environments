@@ -43,5 +43,5 @@ USER coder
 
 # # New Entrypoint
 # COPY vscode_hub.sh /cmd/vscode_hub.sh
-# ENTRYPOINT ["/cmd/vscode_hub.sh"]
-ENTRYPOINT ["dumb-init", "code-server", "--host", "0.0.0.0", "--auth", "none", "--disable-telemetry"]
+ENTRYPOINT ["/cmd/vscode_hub.sh"]
+# ENTRYPOINT ["dumb-init", "code-server", "--host", "0.0.0.0", "--auth", "none", "--disable-telemetry"]

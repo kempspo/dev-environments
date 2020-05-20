@@ -11,12 +11,10 @@ map \$http_upgrade \$connection_upgrade {
         '' close;
     }
 server {
-        listen 8888;
-        listen [::]:8888;
-        rewrite ^${JUPYTERHUB_SERVICE_PREFIX:0:(-1)}$ $HUB_HOST$JUPYTERHUB_SERVICE_PREFIX permanent;
-        location $JUPYTERHUB_SERVICE_PREFIX {
+        listen 8080;
+        listen [::]:8080;
+        location / {
              proxy_pass http://127.0.0.1:8080/;
-             proxy_redirect http://127.0.0.1:8080/ $HUB_HOST$JUPYTERHUB_SERVICE_PREFIX;
              proxy_http_version 1.1;
              proxy_set_header Upgrade \$http_upgrade;
              proxy_set_header Connection \$connection_upgrade;
@@ -36,7 +34,8 @@ sudo chown -R 1000:1000 /home/$USER
 # # Run VS Code Server
 sudo runuser -l  coder -c "\
     HOME=/home/$USER \
-    /usr/bin/dumb-init \
+    dumb-init \
     code-server \
+    --host 0.0.0.0 \ 
     --auth none --disable-telemetry \
     "
