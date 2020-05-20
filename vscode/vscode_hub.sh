@@ -35,6 +35,6 @@ sudo service nginx start
 sudo runuser -l  coder -c "\
     dumb-init \
     code-server \
-    --host 0.0.0.0 \ 
+    # --host 0.0.0.0 \ 
     --auth none --disable-telemetry \
     "
