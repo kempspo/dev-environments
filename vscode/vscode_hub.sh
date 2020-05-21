@@ -1,7 +1,7 @@
 #! /bin/bash
 
 # Turn JUPYTERHUB_USER into USER variable
-export USER=$(echo ${NB_USER})
+export USER=$(echo ${JUPYTERHUB_USER})
 
 # Add nginx config and start nginx
 sudo rm -f /etc/nginx/sites-enabled/default
@@ -20,7 +20,6 @@ server {
              proxy_http_version 1.1;
              proxy_set_header Upgrade \$http_upgrade;
              proxy_set_header Connection \$connection_upgrade;
-             proxy_set_header Origin "";
              proxy_read_timeout 20d;
              proxy_set_header Host \$host;
              proxy_set_header Accept-Encoding gzip;
@@ -34,9 +33,10 @@ sudo usermod -aG docker coder
 sudo mkdir -p /home/$USER
 sudo chown -R 1000:1000 /home/$USER
 
-# # Run VS Code Server
+# Run VS Code Server
 sudo runuser -l  coder -c "\
-    dumb-init \
-    code-server \
+    HOME=/home/$USER \
+    /usr/bin/dumb-init \
+    /usr/local/bin/code-server \
     --auth none --disable-telemetry \
     "

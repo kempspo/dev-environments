@@ -1,5 +1,6 @@
 FROM codercom/code-server:2.1638-vsc1.39.2
 LABEL maintainer="Kemp Po kempspo@gmail.com"
+
 USER root
 
 # Linux Dependencies
@@ -10,27 +11,26 @@ RUN apt-get update && apt-get -y install \
   nano \
   software-properties-common \
   zsh \
-  nginx \
-  gnupg2 \
-  apt-transport-https \
-  lsb-release \
-  ca-certificates
+  odbc-postgresql \
+  libsqliteodbc \
+  nginx
 
 # Install Docker & ZSH
 USER root
-# RUN sudo apt-get update && sudo apt-get install -y  software-properties-common
+RUN sudo apt-get update && sudo apt-get install -y lsb-release software-properties-common
 RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - && \
-    # apt-key fingerprint 0EBFCD88 && \
+    apt-key fingerprint 0EBFCD88 && \
     add-apt-repository \
     "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
     $(lsb_release -cs) \
     stable" && \
-    apt-get update && apt-cache policy docker-ce && apt-get install -y docker-ce docker-ce-cli containerd.io
+    apt-get update && apt-get install -y docker-ce docker-ce-cli containerd.io
 
 # Install kubectl
-# RUN curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - && \
-#   echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | tee -a /etc/apt/sources.list.d/kubernetes.list && \
-#   apt-get update && apt-get install -y kubectl
+RUN apt-get update && apt-get install -y apt-transport-https && \
+  curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - && \
+  echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | tee -a /etc/apt/sources.list.d/kubernetes.list && \
+  apt-get update && apt-get install -y kubectl
 
 # Install Cloud66 Toolbelt
 RUN curl -sSL https://s3.amazonaws.com/downloads.cloud66.com/cx_installation/cx_install.sh | bash
@@ -41,7 +41,6 @@ EXPOSE 8888
 # Switch back to coder user
 USER coder
 
-# # New Entrypoint
+# New Entrypoint
 COPY vscode_hub.sh /cmd/vscode_hub.sh
 ENTRYPOINT ["/cmd/vscode_hub.sh"]
-# ENTRYPOINT ["dumb-init", "code-server", "--host", "0.0.0.0", "--auth", "none", "--disable-telemetry"]
