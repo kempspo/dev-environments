@@ -1,4 +1,4 @@
-FROM codercom/code-server:2.1638-vsc1.39.2
+FROM codercom/code-server:3.2.0
 LABEL maintainer="Kemp Po kempspo@gmail.com"
 
 USER root
@@ -18,10 +18,10 @@ RUN apt-get update && apt-get -y install \
 # Install Docker & ZSH
 USER root
 RUN sudo apt-get update && sudo apt-get install -y lsb-release software-properties-common
-RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - && \
+RUN curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add - && \
     apt-key fingerprint 0EBFCD88 && \
     add-apt-repository \
-    "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+    "deb [arch=amd64] https://download.docker.com/debian/ubuntu \
     $(lsb_release -cs) \
     stable" && \
     apt-get update && apt-get install -y docker-ce docker-ce-cli containerd.io
