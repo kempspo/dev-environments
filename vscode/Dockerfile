@@ -19,10 +19,10 @@ RUN apt-get update && apt-get -y install \
 # Install Docker & ZSH
 USER root
 # RUN sudo apt-get update && sudo apt-get install -y  software-properties-common
-RUN curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add - && \
+RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - && \
     # apt-key fingerprint 0EBFCD88 && \
     add-apt-repository \
-    "deb [arch=amd64] https://download.docker.com/linux/debian \
+    "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
     $(lsb_release -cs) \
     stable" && \
     apt-get update && apt-cache policy docker-ce && apt-get install -y docker-ce docker-ce-cli containerd.io
