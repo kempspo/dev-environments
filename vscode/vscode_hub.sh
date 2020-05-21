@@ -7,7 +7,7 @@ export USER=$(echo ${NB_USER})
 sudo rm -f /etc/nginx/sites-enabled/default
 echo "
 map \$http_upgrade \$connection_upgrade {
-        default Upgrade;
+        default upgrade;
         '' close;
     }
 server {
