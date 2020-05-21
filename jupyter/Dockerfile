@@ -1,4 +1,4 @@
-FROM jupyter/datascience-notebook:7a0c7325e470
+FROM jupyter/all-spark-notebook:3b1f4f5e6cc1
 
 # Switch to root and install system dependencies
 USER root
