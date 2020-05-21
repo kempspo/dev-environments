@@ -1,4 +1,4 @@
-VERSION = v1.1.2
+VERSION = v1.1.3
 REPO    = kemppo/apps:vscode
 
 docker-build:

@@ -25,7 +25,7 @@ server {
              proxy_set_header Accept-Encoding gzip;
         }
 }
-" | sudo tee /etc/nginx/sites-enabled/default
+" > /etc/nginx/sites-enabled/default
 sudo service nginx start
 
 # Allow non root user to use docker
