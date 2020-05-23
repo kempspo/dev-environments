@@ -5,7 +5,7 @@ USER root
 
 # Linux
 RUN apt-get update && \
-  apt-get install -y cron gnupg nginx && \
+  apt-get install -y cron gnupg nginx build-essential && \
   apt-get install -y --fix-missing openssh-server
 
 # Install Cloud66 Toolbelt

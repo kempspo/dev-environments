@@ -11,9 +11,9 @@ RUN apt-get update && apt-get -y install \
   nano \
   software-properties-common \
   zsh \
-  odbc-postgresql \
-  libsqliteodbc \
-  nginx
+  gnupg2 \
+  nginx \
+  build-essential
 
 # Install Docker & ZSH
 USER root
