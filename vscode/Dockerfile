@@ -15,6 +15,9 @@ RUN apt-get update && apt-get -y install \
   nginx \
   build-essential
 
+RUN apt-get update && \
+  apt-get install -y python3-pip
+
 # Install Docker & ZSH
 USER root
 RUN sudo apt-get update && sudo apt-get install -y lsb-release software-properties-common
