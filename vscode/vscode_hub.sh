@@ -37,6 +37,6 @@ sudo chown -R 1000:1000 /home/$USER
 sudo runuser -l  coder -c "\
     HOME=/home/$USER \
     /usr/bin/dumb-init \
-    /usr/local/bin/code-server \
+    code-server \
     --auth none --disable-telemetry \
     "
