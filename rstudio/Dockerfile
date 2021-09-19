@@ -1,24 +1,47 @@
 # RStudio Server Docker Image
-FROM rocker/geospatial:3.6.3
+FROM rocker/geospatial:4.1.1
 LABEL maintainer="Kemp Po kempspo@gmail.com"
 
 # Linux Dependencies
-RUN apt-get update && apt-get -y install \
-  gdebi-core \
-  apt-utils \
-  curl \
-  nano \
-  software-properties-common \
-  zsh \
-  nginx \
-  gnupg \
-  apt-transport-https
+RUN apt-get update && \
+	apt-get install -y \
+	curl \
+	dumb-init \
+	zsh \
+	htop \
+	locales \
+	man \
+	nano \
+	git \
+	procps \
+	openssh-client \
+	sudo \
+	vim.tiny \
+	lsb-release \
+	gdebi-core \
+	apt-utils \
+	software-properties-common \
+	curl \
+	gnupg-agent \
+	ca-certificates \
+	nano \
+	zsh \
+	gnupg \
+	apt-transport-https \
+	libsodium-dev \
+	nodejs \
+	make \
+	wget \
+	xvfb \
+	libssh-dev \
+	nginx \
+	libpoppler-cpp-dev
 
 # Install Docker
-RUN curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add - && \
-	apt-key fingerprint 0EBFCD88 && \
-	add-apt-repository \
-	"deb [arch=amd64] https://download.docker.com/linux/debian \
+RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - && \
+	sudo apt-key fingerprint 0EBFCD88 && \
+	sudo add-apt-repository \
+	"deb [arch=amd64] https://download.docker.com/linux/ubuntu \
 	$(lsb_release -cs) \
 	stable" && \
 	apt-get update && apt-get install -y docker-ce docker-ce-cli containerd.io && \
@@ -36,11 +59,6 @@ RUN curl -sSL https://s3.amazonaws.com/downloads.cloud66.com/cx_installation/cx_
 # Install Git LFS
 RUN curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash && \
 	apt-get update && apt-get install -y git-lfs
-
-# R package dependencies
-RUN apt-get update && \
-  apt-get install -y \
-  libsodium-dev
 
 # Install Google Chrome (Headless Browsing)
 RUN wget \
