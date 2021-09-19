@@ -1,4 +1,4 @@
-VERSION = v1.2.1
+VERSION = v1.2.2
 REPO    = kemppo/apps:vscode
 
 docker-build:
@@ -10,15 +10,3 @@ docker-push:
 docker-push-latest:
 	docker tag $(REPO)-$(VERSION) $(REPO)-latest && \
 	docker push $(REPO)-latest
-
-docker-build-gateway:
-	docker build . --rm \
-		-t $(REPO)-gateway-$(VERSION) \
-		-f Dockerfile.gateway
-
-docker-push-gateway:
-	docker push $(REPO)-gateway-$(VERSION)
-
-docker-push-latest-gateway:
-	docker tag $(REPO)-gateway-$(VERSION) $(REPO)-gateway-latest && \
-	docker push $(REPO)-gateway-latest
