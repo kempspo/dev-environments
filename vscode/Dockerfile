@@ -1,4 +1,4 @@
-FROM codercom/code-server:3.2.0
+FROM codercom/code-server:3.12.0
 LABEL maintainer="Kemp Po kempspo@gmail.com"
 
 USER root
@@ -15,8 +15,8 @@ RUN apt-get update && apt-get -y install \
   nginx \
   build-essential
 
-RUN apt-get update && \
-  apt-get install -y python3-pip
+RUN apt-get update && apt-get install -y python3 python3-pip
+RUN pip3 install -U radian jupyter
 
 # Install Docker & ZSH
 USER root
