@@ -13,21 +13,22 @@ RUN apt-get update && apt-get -y install \
   zsh \
   gnupg2 \
   nginx \
-  build-essential
+  build-essential \
+  lsb-release
 
 RUN apt-get update && apt-get install -y python3 python3-pip
 RUN pip3 install -U radian jupyter
 
 # Install Docker & ZSH
 USER root
-RUN sudo apt-get update && sudo apt-get install -y lsb-release software-properties-common
+# Install Docker
 RUN curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add - && \
     apt-key fingerprint 0EBFCD88 && \
     add-apt-repository \
     "deb [arch=amd64] https://download.docker.com/linux/debian \
     $(lsb_release -cs) \
     stable" && \
-    apt-get update && apt-get install -y docker-ce=19.03.8 docker-ce-cli containerd.io
+    apt-get update && apt-get install -y docker-ce docker-ce-cli containerd.io
 
 # Install kubectl
 RUN apt-get update && apt-get install -y apt-transport-https && \
