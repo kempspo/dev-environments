@@ -1,10 +1,10 @@
-VERSION = v0.1
+VERSION = v0.1.0
 REPO    = kemppo/apps:gateway
 
 gateway-build:
 	docker build . --rm \
 		-t $(REPO)-$(VERSION) \
-		-f Dockerfile.gateway
+		-f Dockerfile
 
 gateway-push:
 	docker push $(REPO)-$(VERSION)
