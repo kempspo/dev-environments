@@ -1,4 +1,4 @@
-VERSION = v1.0
+VERSION = v1.1.0
 REPO    = kemppo/apps:rstudio
 
 docker-pull-latest:
